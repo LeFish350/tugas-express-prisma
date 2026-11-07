@@ -51,6 +51,19 @@ function createProductController(prisma) {
       } catch (err) { return next(err); }
     },
 
+    async updateProduct(req, res, next) {
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ message: 'ID produk tidak valid' });
+      const data = parseProductBody(req.body); // PUT mengganti name & price sekaligus.
+      if (!data) return res.status(400).json({ message: 'name wajib teks dan price wajib bilangan bulat >= 0' });
+      try {
+        const product = await prisma.product.update({ where: { id }, data });
+        return res.status(200).json(product);
+      } catch (err) {
+        if (err.code === 'P2025') return res.status(404).json({ message: 'Produk tidak ditemukan' });
+        return next(err);
+      }
+    },
 
   };
 }
