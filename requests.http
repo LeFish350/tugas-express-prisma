@@ -1,0 +1,41 @@
+### GET semua data - 200
+GET http://localhost:3000/products
+
+### GET data ID 1 - 200
+GET http://localhost:3000/products/1
+
+### GET ID tidak ditemukan - 404
+GET http://localhost:3000/products/999
+
+### POST data baru - 201
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Penghapus",
+  "price": 3000
+}
+
+### POST validasi gagal - 400
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": -1
+}
+
+### PUT ubah ID 1 - 200
+PUT http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+  "name": "Buku Tulis",
+  "price": 18000
+}
+
+### DELETE produk ID 2 - 200
+DELETE http://localhost:3000/products/2
+
+### GET data setelah PUT dan DELETE - 200
+GET http://localhost:3000/products

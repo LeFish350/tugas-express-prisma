@@ -1,0 +1,98 @@
+
+> tugas-express-prisma@2.0.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: parseId menolak ID tidak valid
+ok 1 - parseId menolak ID tidak valid
+  ---
+  duration_ms: 2.264236
+  type: 'test'
+  ...
+# Subtest: parseProductBody memvalidasi name dan price
+ok 2 - parseProductBody memvalidasi name dan price
+  ---
+  duration_ms: 1.032045
+  type: 'test'
+  ...
+# Subtest: GET semua data = 200 dan dua produk awal
+ok 3 - GET semua data = 200 dan dua produk awal
+  ---
+  duration_ms: 0.379186
+  type: 'test'
+  ...
+# Subtest: GET ID 1 = 200
+ok 4 - GET ID 1 = 200
+  ---
+  duration_ms: 1.519935
+  type: 'test'
+  ...
+# Subtest: GET ID 999 = 404
+ok 5 - GET ID 999 = 404
+  ---
+  duration_ms: 0.246149
+  type: 'test'
+  ...
+# Subtest: GET ID invalid = 400
+ok 6 - GET ID invalid = 400
+  ---
+  duration_ms: 0.169174
+  type: 'test'
+  ...
+# Subtest: POST data valid = 201 dan id auto
+ok 7 - POST data valid = 201 dan id auto
+  ---
+  duration_ms: 0.276404
+  type: 'test'
+  ...
+# Subtest: POST data invalid = 400
+ok 8 - POST data invalid = 400
+  ---
+  duration_ms: 0.265556
+  type: 'test'
+  ...
+# Subtest: PUT ID 1 = 200 dan nilai tersimpan
+ok 9 - PUT ID 1 = 200 dan nilai tersimpan
+  ---
+  duration_ms: 0.573541
+  type: 'test'
+  ...
+# Subtest: PUT ID yang tidak ada = 404
+ok 10 - PUT ID yang tidak ada = 404
+  ---
+  duration_ms: 0.751603
+  type: 'test'
+  ...
+# Subtest: PUT body tidak valid = 400
+ok 11 - PUT body tidak valid = 400
+  ---
+  duration_ms: 0.20629
+  type: 'test'
+  ...
+# Subtest: DELETE ID 2 = 200 dan record benar-benar hilang
+ok 12 - DELETE ID 2 = 200 dan record benar-benar hilang
+  ---
+  duration_ms: 1.443054
+  type: 'test'
+  ...
+# Subtest: DELETE ID 999 = 404
+ok 13 - DELETE ID 999 = 404
+  ---
+  duration_ms: 0.178777
+  type: 'test'
+  ...
+# Subtest: POST diikuti GET menampilkan data baru
+ok 14 - POST diikuti GET menampilkan data baru
+  ---
+  duration_ms: 0.863396
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 106.58051

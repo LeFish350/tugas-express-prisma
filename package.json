@@ -1,0 +1,31 @@
+{
+  "name": "tugas-express-prisma",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Lanjutan tugas Express.js: CRUD produk dengan Prisma ORM dan SQLite",
+  "main": "server.js",
+  "scripts": {
+    "postinstall": "prisma generate",
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:setup": "prisma migrate deploy && node prisma/seed.js",
+    "db:seed": "node prisma/seed.js",
+    "db:studio": "prisma studio",
+    "db:migrate": "prisma migrate dev",
+    "test": "node --test tests/*.test.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.0",
+    "dotenv": "16.6.1",
+    "express": "5.1.0"
+  },
+  "devDependencies": {
+    "prisma": "6.19.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
