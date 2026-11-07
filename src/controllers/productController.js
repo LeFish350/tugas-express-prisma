@@ -65,6 +65,17 @@ function createProductController(prisma) {
       }
     },
 
+    async deleteProduct(req, res, next) {
+      const id = parseId(req.params.id);
+      if (id === null) return res.status(400).json({ message: 'ID produk tidak valid' });
+      try {
+        const product = await prisma.product.delete({ where: { id } });
+        return res.status(200).json({ message: 'Produk berhasil dihapus', product });
+      } catch (err) {
+        if (err.code === 'P2025') return res.status(404).json({ message: 'Produk tidak ditemukan' });
+        return next(err);
+      }
+    },
   };
 }
 

@@ -9,6 +9,7 @@ module.exports = function productRoutes(prisma) {
   router.get('/:id', controller.getProductById);
   router.post('/', controller.createProduct);
   router.put('/:id', controller.updateProduct);
+  router.delete('/:id', controller.deleteProduct);
 
   return router;
 };
