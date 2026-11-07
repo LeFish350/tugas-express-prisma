@@ -7,6 +7,7 @@ module.exports = function productRoutes(prisma) {
 
   router.get('/', controller.getAllProducts);
   router.get('/:id', controller.getProductById);
+  router.post('/', controller.createProduct);
 
   return router;
 };

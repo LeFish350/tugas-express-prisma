@@ -6,6 +6,23 @@ function parseId(raw) {
   return Number.isSafeInteger(id) && id <= 2147483647 ? id : null;
 }
 
+function parseProductBody(body) {
+  const { name, price } = body && typeof body === 'object' && !Array.isArray(body)
+    ? body
+    : {};
+  if (
+    typeof name !== 'string' ||
+    name.trim().length === 0 ||
+    typeof price !== 'number' ||
+    !Number.isInteger(price) ||
+    price < 0 ||
+    price > 2147483647
+  ) {
+    return null;
+  }
+  return { name: name.trim(), price };
+}
+
 function createProductController(prisma) {
   return {
     async getAllProducts(req, res, next) {
@@ -25,9 +42,17 @@ function createProductController(prisma) {
       } catch (err) { return next(err); }
     },
 
+    async createProduct(req, res, next) {
+      const data = parseProductBody(req.body);
+      if (!data) return res.status(400).json({ message: 'name wajib teks dan price wajib bilangan bulat >= 0' });
+      try {
+        const product = await prisma.product.create({ data });
+        return res.status(201).json(product);
+      } catch (err) { return next(err); }
+    },
 
 
   };
 }
 
-module.exports = { createProductController, parseId };
+module.exports = { createProductController, parseId, parseProductBody };
