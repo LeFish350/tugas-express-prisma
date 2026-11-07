@@ -1,0 +1,16 @@
+const app = require('./src/app');
+const prisma = require('./src/db/prisma');
+
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () => {
+  console.log(`API aktif di http://localhost:${PORT}`);
+});
+
+async function shutdown() {
+  server.close(async () => {
+    await prisma.$disconnect();
+    process.exit(0);
+  });
+}
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
