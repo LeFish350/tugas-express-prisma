@@ -1,59 +1,87 @@
 # Bukti Pengujian CRUD Prisma
 
-Folder ini berisi dokumentasi hasil pengujian REST API menggunakan **Express.js, Prisma ORM, SQLite, dan Thunder Client**.
+Dokumentasi pengujian REST API menggunakan **Express.js, Prisma ORM, SQLite, dan Thunder Client**.
 
-## Hasil Pengujian
+## 1. GET - Menampilkan Semua Produk
 
-| File | Keterangan | Status |
-|---|---|---|
-| 1.png | GET - Menampilkan seluruh produk | 200 OK |
-| 2.png | POST - Menambahkan produk baru | 201 Created |
-| 3.png | Database setelah POST (produk berhasil ditambahkan) | Berhasil |
-| 4.png | PUT - Mengubah data produk | 200 OK |
-| 5.png | Database setelah PUT (data berhasil diperbarui) | Berhasil |
-| 6.png | DELETE - Menghapus produk | 200 OK |
-| 7.png | Database setelah DELETE (produk berhasil dihapus) | Berhasil |
-| 8.png | GET - Produk tidak ditemukan | 404 Not Found |
-| 9.png | POST - Validasi input tidak valid | 400 Bad Request |
+**Endpoint:** `GET /products`  
+**Status:** 200 OK
 
-> **Catatan:** Sesuaikan nomor file dengan isi screenshot yang sebenarnya.
+![Pengujian GET](1.png)
 
-## Dokumentasi Perubahan Database
+## 2. POST - Menambahkan Produk
 
-### 1. POST - Menambahkan Produk
+**Endpoint:** `POST /products`  
+**Status:** 201 Created
 
-Produk baru ditambahkan dengan data:
-- **Nama:** Penghapus
-- **Harga:** 3000
-- **ID:** 3
+Data yang ditambahkan:
+- Nama: Penghapus
+- Harga: 3000
 
-Hasil: Produk berhasil ditambahkan ke database dengan status **201 Created**.
+![Pengujian POST](2.png)
 
-### 2. PUT - Memperbarui Produk
+### Database Setelah POST
 
-Data produk dengan ID 3 diperbarui:
-- **Nama sebelumnya:** Penghapus
-- **Nama baru:** Penghapus Putih
-- **Harga sebelumnya:** 3000
-- **Harga baru:** 4000
+Produk baru berhasil tersimpan di database Prisma.
 
-Hasil: Data berhasil diperbarui dengan status **200 OK**.
+![Database Setelah POST](3.png)
 
-### 3. DELETE - Menghapus Produk
+## 3. PUT - Memperbarui Produk
 
-Produk dengan ID 3 dihapus dari database.
+**Endpoint:** `PUT /products/3`  
+**Status:** 200 OK
 
-Hasil: Produk berhasil dihapus dengan status **200 OK**.
+Perubahan data:
+- Nama: Penghapus menjadi Penghapus Putih
+- Harga: 3000 menjadi 4000
 
-### 4. Pengujian Error
+![Pengujian PUT](4.png)
 
-- **404 Not Found:** Terjadi ketika ID produk tidak ditemukan.
-- **400 Bad Request:** Terjadi ketika input tidak valid, seperti nama kosong dan harga negatif.
+### Database Setelah PUT
+
+Data produk berhasil diperbarui pada database.
+
+![Database Setelah PUT](5.png)
+
+## 4. DELETE - Menghapus Produk
+
+**Endpoint:** `DELETE /products/3`  
+**Status:** 200 OK
+
+Produk dengan ID 3 berhasil dihapus.
+
+![Pengujian DELETE](6.png)
+
+### Database Setelah DELETE
+
+Produk dengan ID 3 sudah tidak ditemukan dalam database.
+
+![Database Setelah DELETE](7.png)
+
+## 5. Pengujian Error 404
+
+**Endpoint:** `GET /products/999`  
+**Status:** 404 Not Found
+
+API mengembalikan pesan bahwa produk tidak ditemukan.
+
+![Pengujian 404](8.png)
+
+## 6. Pengujian Validasi 400
+
+**Endpoint:** `POST /products`  
+**Status:** 400 Bad Request
+
+Data tidak valid:
+- Nama kosong
+- Harga negatif (-1000)
+
+![Pengujian Validasi 400](9.png)
 
 ## Kesimpulan
 
-Berdasarkan hasil pengujian, seluruh operasi CRUD (Create, Read, Update, Delete) pada REST API menggunakan Express.js dan Prisma ORM berhasil dijalankan.
+Seluruh operasi CRUD (Create, Read, Update, Delete) berhasil dijalankan menggunakan Express.js dan Prisma ORM.
 
-Perubahan data telah diverifikasi melalui Prisma Studio, sedangkan pengujian endpoint dilakukan menggunakan Thunder Client.
+Pengujian endpoint dilakukan melalui Thunder Client dan perubahan database telah diverifikasi menggunakan Prisma Studio.
 
-API juga berhasil menangani kesalahan berupa data tidak ditemukan dan input yang tidak valid.
+API juga berhasil menangani kesalahan 404 Not Found dan 400 Bad Request.
