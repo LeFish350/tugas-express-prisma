@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aplikasi Manajemen Produk - Tugas 3 Pemrograman Web">
+  <title>Manajemen Produk | Tugas 3</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="dashboard" aria-labelledby="page-title">
+      <header class="dashboard-header">
+        <div>
+          <p class="eyebrow">TUGAS 3 · PEMROGRAMAN WEB</p>
+          <h1 id="page-title">Manajemen Produk</h1>
+          <p class="subtitle">Kelola daftar produk dan harga dalam satu tempat.</p>
+        </div>
+        <button class="btn btn-primary add-button" type="button" id="add-product-btn">
+          <span aria-hidden="true">＋</span> Tambah Produk
+        </button>
+      </header>
+
+      <div class="toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <label class="sr-only" for="search">Cari nama produk</label>
+          <input id="search" type="search" placeholder="Cari nama produk..." autocomplete="off">
+        </div>
+        <p class="count" id="product-count" aria-live="polite">Memuat produk...</p>
+      </div>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div class="product-grid" id="product-grid" aria-live="polite" aria-busy="true"></div>
+      <div class="empty-state" id="empty-state" hidden>
+        <div class="empty-symbol" aria-hidden="true">▦</div>
+        <h2 id="empty-title">Belum ada produk</h2>
+        <p id="empty-description">Produk baru akan tampil di sini.</p>
+        <button type="button" class="btn btn-outline" id="retry-btn" hidden>Coba lagi</button>
+      </div>
+      <footer class="footer-row"><span id="footer-count">Memuat data...</span><span>Express.js + Prisma</span></footer>
+    </section>
+  </main>
+
+  <!-- Pop-up Tambah Produk -->
+  <dialog class="product-dialog" id="create-dialog" aria-labelledby="create-title">
+    <form id="create-form" novalidate>
+      <header class="dialog-header"><div><h2 id="create-title">Tambah Produk</h2><p>Masukkan informasi produk baru.</p></div><button type="button" class="dialog-close" data-close aria-label="Tutup">×</button></header>
+      <div class="form-field"><label for="create-name">Nama Produk</label><input id="create-name" name="name" placeholder="Contoh: Pulpen" maxlength="100" required></div>
+      <div class="form-field"><label for="create-price">Harga (Rp)</label><input id="create-price" name="price" type="number" placeholder="Contoh: 5000" min="0" max="2147483647" step="1" required><small>Harga harus lebih dari atau sama dengan 0.</small></div>
+      <p id="create-error" class="form-error" role="alert" hidden></p>
+      <footer class="dialog-actions"><button type="button" class="btn btn-outline" data-close>Batal</button><button type="submit" class="btn btn-primary">Simpan Produk</button></footer>
+    </form>
+  </dialog>
+
+  <!-- Pop-up Edit Produk -->
+  <dialog class="product-dialog" id="edit-dialog" aria-labelledby="edit-title">
+    <form id="edit-form" novalidate>
+      <header class="dialog-header"><div><h2 id="edit-title">Edit Produk</h2><p>Perbarui informasi produk yang dipilih.</p></div><button type="button" class="dialog-close" data-close aria-label="Tutup">×</button></header>
+      <p class="meta" id="edit-id">ID: -</p>
+      <div class="form-field"><label for="edit-name">Nama Produk</label><input id="edit-name" name="name" maxlength="100" required></div>
+      <div class="form-field"><label for="edit-price">Harga (Rp)</label><input id="edit-price" name="price" type="number" min="0" max="2147483647" step="1" required><small>Harga harus lebih dari atau sama dengan 0.</small></div>
+      <p id="edit-error" class="form-error" role="alert" hidden></p>
+      <footer class="dialog-actions"><button type="button" class="btn btn-outline" data-close>Batal</button><button type="submit" class="btn btn-primary">Simpan Perubahan</button></footer>
+    </form>
+  </dialog>
+
+  <!-- Pop-up Konfirmasi Hapus -->
+  <dialog class="product-dialog delete-dialog" id="delete-dialog" aria-labelledby="delete-title">
+    <form id="delete-form">
+      <header class="dialog-header"><div class="danger-icon" aria-hidden="true">▤</div><button type="button" class="dialog-close" data-close aria-label="Tutup">×</button></header>
+      <div class="delete-intro"><h2 id="delete-title">Hapus Produk?</h2><p>Produk yang dihapus tidak dapat dikembalikan.</p></div>
+      <div class="delete-product-summary"><span id="delete-id">ID: -</span><strong id="delete-name">-</strong><span class="price" id="delete-price">-</span></div>
+      <p id="delete-error" class="form-error" role="alert" hidden></p>
+      <footer class="dialog-actions"><button type="button" class="btn btn-outline" data-close>Batal</button><button type="submit" class="btn btn-danger">Hapus Produk</button></footer>
+    </form>
+  </dialog>
+
+  <!-- Scripts setiap tahap Git ditambahkan melalui berkas instalasi bertahap -->
+</body>
+</html>
