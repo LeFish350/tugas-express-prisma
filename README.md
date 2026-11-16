@@ -56,7 +56,7 @@ Buka Thunder Client di VS Code dan buat request sesuai contoh di bawah (pastikan
 7. **DELETE** `http://localhost:3000/products/2` — 200 OK.
 8. **GET** `http://localhost:3000/products` lagi — lihat data terkini sesudah perubahan.
 
-**Penting:** Nomor ID POST bisa berbeda bila kamu pernah membuat/menghapus data. Gunakan ID nyata yang muncul pada respons POST. Semua perubahan persisten meskipun `npm start` dihentikan dan server dijalankan kembali.
+**Penting:** Nomor ID POST bisa berbeda bila pernah membuat/menghapus data. Gunakan ID nyata yang muncul pada respons POST. Semua perubahan persisten meskipun `npm start` dihentikan dan server dijalankan kembali.
 
 ## 4. Screenshot perubahan database (before & after)
 
@@ -73,7 +73,7 @@ Prisma Studio menampilkan tabel `Product` di browser. Ikuti langkah berikut:
 3. Refresh tampilan tabel Product pada Prisma Studio; ambil screenshot **sesudah**: Buku Tulis (18000), Penghapus (3000), dan Pulpen sudah tidak ada.
 4. Simpan screenshot bersama hasil request di folder `BUKTI_PENGUJIAN/`.
 
-Jika kamu sudah menguji dan database terlanjur berubah, screenshot awal tidak boleh direkayasa. Untuk mulai lagi dari kosong **hanya jika aman menghapus data latihan**: hentikan server dan Studio, hapus `prisma/dev.db`, jalankan `npm run db:setup`, kemudian ambil screenshot awal baru. Tindakan ini menghapus semua data latihan lokal.
+Jika sudah menguji dan database terlanjur berubah, screenshot awal tidak boleh direkayasa. Untuk mulai lagi dari kosong **hanya jika aman menghapus data latihan**: hentikan server dan Studio, hapus `prisma/dev.db`, jalankan `npm run db:setup`, kemudian ambil screenshot awal baru. Tindakan ini menghapus semua data latihan lokal.
 
 ## 5. Pengujian otomatis
 
@@ -108,7 +108,7 @@ tugas-express-prisma/
 
 ## 7. Pengumpulan
 
-- Repository GitHub yang benar-benar kamu buat dan publikasikan. Baca `PETUNJUK_GITHUB.md`.
+- Repository GitHub yang benar-benar buat dan publikasikan. Baca `PETUNJUK_GITHUB.md`.
 - Isi identitas dan URL GitHub pada `LAPORAN_TEMPLATE.docx`.
 - Lengkapi screenshot asli Thunder Client (berhasil, gagal validasi/404) dan Prisma Studio (before-after).
 - Jangan unggah database `.db`, `node_modules`, atau `.env` ke repo.
