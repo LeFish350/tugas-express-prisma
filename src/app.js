@@ -1,9 +1,12 @@
 const express = require('express');
+const path = require('path');
 const prisma = require('./db/prisma');
 const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 app.use(express.json());
+// Tugas 3: tampilkan halaman Manajemen Produk pada http://localhost:3000/.
+app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/products', productRoutes(prisma));
 
 app.use((req, res) => res.status(404).json({ message: 'Endpoint tidak ditemukan' }));
